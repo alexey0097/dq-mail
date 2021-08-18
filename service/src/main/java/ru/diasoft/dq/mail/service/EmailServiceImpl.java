@@ -65,7 +65,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private InternetAddress[] parseInternetAddress(String recipients) throws AddressException {
-        return InternetAddress.parse(recipients);
+        return Strings.isNullOrEmpty(recipients) ? new InternetAddress[] {} : InternetAddress.parse(recipients);
     }
 
     private String getEmailFrom(EmailDto email) {
