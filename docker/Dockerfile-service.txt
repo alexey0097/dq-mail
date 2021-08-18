@@ -1,0 +1,14 @@
+FROM registry.diasoft.ru:5000/diasoft-parent-jdk8:latest
+VOLUME /tmp
+
+#В директории FTSysConfigManager должны быть размещены файлы, требующиеся для продукта "Инсталлятор". В частности, файл properties.properties.
+ADD docker/properties.properties /FTSysConfigManager/properties.properties
+
+COPY ./service/target/dq-mail-service-*.jar app.jar
+
+# COPY ./database/target/load-odds-dbmanager-*.zip /opt/diasoft/
+# RUN unzip /opt/diasoft/load-odds-dbmanager-*.zip -d /opt/diasoft/
+# RUN mv /opt/diasoft/load-odds-dbmanager-*/ /opt/diasoft/db-manager
+# RUN chmod -R 777 /opt/diasoft/
+
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]

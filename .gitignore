@@ -1,0 +1,57 @@
+*/target/
+**/target/
+target/
+*/logs/
+logs/
+!.mvn/wrapper/maven-wrapper.jar
+
+### DIASOFT ##
+.deploy
+**/generated/
+**/applet/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+serivce/.idea
+*/.idea/
+**/.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+*/nbproject/private/
+*/nbbuild/
+*/dist/
+*/nbdist/
+*/.nb-gradle/
+*/build/
+nb-configuration.xml
+nbactions.xml
+
+### VS Code ###
+.vscode/
+
+### Eclipse ###
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath

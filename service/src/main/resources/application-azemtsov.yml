@@ -1,0 +1,12 @@
+security:
+  enabled: true
+  oauth2:
+    client:
+      clientId: client
+      clientSecret: secret
+      scope: openid
+      accessTokenUri: http://mdpauth.auto-team.qrun.diasoft.ru/mdpauth/oauth/token
+      userAuthorizationUri: http://mdpauth.auto-team.qrun.diasoft.ru/mdpauth/oauth/authorize
+    resource:
+      jwt:
+        key-uri: http://mdpauth.auto-team.qrun.diasoft.ru/mdpauth/oauth/token_key
