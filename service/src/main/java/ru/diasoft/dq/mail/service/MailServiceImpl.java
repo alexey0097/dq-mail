@@ -7,8 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import ru.diasoft.dq.mail.config.EmailConfig;
-import ru.diasoft.dq.mail.dto.EmailDto;
+import ru.diasoft.dq.mail.config.MailConfig;
+import ru.diasoft.dq.mail.dto.MailDto;
 import ru.diasoft.dq.mail.exception.InternalServerSystemApiException;
 
 import javax.mail.MessagingException;
@@ -20,24 +20,24 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class EmailServiceImpl implements EmailService {
+public class MailServiceImpl implements MailService {
 
     private static final String ERROR_REQUIRED_PARAMETER_CODE = "error.find.required.parameter";
 
-    private final EmailConfig emailConfig;
+    private final MailConfig mailConfig;
 
     private final TemplateService templateService;
     private final MessageBundleService messageBundleService;
     private final JavaMailSender javaMailSender;
 
     @Override
-    public EmailDto send(EmailDto email) throws MessagingException {
+    public MailDto send(MailDto email) throws MessagingException {
         this.checkRequiredParameters(email);
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(
             message,
             MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
-            emailConfig.getDefaultEncoding()
+            mailConfig.getDefaultEncoding()
         );
         mimeMessageHelper.setFrom(this.getEmailFrom(email));
         mimeMessageHelper.setTo(this.parseInternetAddress(email.getTo()));
@@ -49,7 +49,7 @@ public class EmailServiceImpl implements EmailService {
         return email;
     }
 
-    private void checkRequiredParameters(EmailDto email) {
+    private void checkRequiredParameters(MailDto email) {
         if (Strings.isNullOrEmpty(email.getSubject())) {
             final String msg = messageBundleService.getMessage(ERROR_REQUIRED_PARAMETER_CODE, "subject");
             throw new InternalServerSystemApiException(msg);
@@ -68,11 +68,11 @@ public class EmailServiceImpl implements EmailService {
         return Strings.isNullOrEmpty(recipients) ? new InternetAddress[] {} : InternetAddress.parse(recipients);
     }
 
-    private String getEmailFrom(EmailDto email) {
-        return Strings.isNullOrEmpty(email.getFrom()) ? emailConfig.getUsername() : email.getFrom();
+    private String getEmailFrom(MailDto email) {
+        return Strings.isNullOrEmpty(email.getFrom()) ? mailConfig.getUsername() : email.getFrom();
     }
 
-    private String getEmailContent(EmailDto email) {
+    private String getEmailContent(MailDto email) {
         String emailContent;
         try {
             emailContent = templateService.createHtml(email.getTemplateLocation(), email.getContext());

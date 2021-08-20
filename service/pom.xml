@@ -6,7 +6,7 @@
 
     <groupId>ru.diasoft</groupId>
     <artifactId>dq-mail-service</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${deploy.version}</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>ru.diasoft</groupId>
             <artifactId>dq-mail-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${deploy.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

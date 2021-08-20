@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Getter
 @Setter
-public class EmailConfig {
+public class MailConfig {
 
     @Value("${spring.mail.username}")
     private String username;

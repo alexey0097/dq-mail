@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
-public class EmailDto {
+public class MailDto {
     private String from;
     private String to;
     private String cc;
