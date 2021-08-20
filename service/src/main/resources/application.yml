@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: ${SERVICE_CONTEXT_PATH:dq-mail}
+    context-path: ${SERVICE_CONTEXT_PATH:/dq-mail}
   port: ${SERVICE_PORT:8080}
 
 security:
